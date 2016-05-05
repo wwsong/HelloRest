@@ -1,7 +1,6 @@
 package hello;
 
 public class Hello {
-
     private String msg;
 
     public String getMsg() {

@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @Component
 @Path("/")
@@ -30,6 +34,18 @@ public class HelloResource {
     public Response getHelloVersionInAcceptHeader(@PathParam("name") String name) {
         LOGGER.info("getHelloVersionInAcceptHeader() v1");
         return this.getHello(name, "Version 1 - passed in Accept Header");
+    }
+
+    @GET
+    @Path("html")
+    @Produces(MediaType.TEXT_HTML)
+    public InputStream getHtml() {
+        GHello result = new GHello();
+        InputStream stream = new ByteArrayInputStream(
+                result.getMsg().getBytes(StandardCharsets.UTF_8));
+        return stream;
+
+        //return Response.status(Response.Status.OK).entity(result).build();
     }
 
     private Response getHello(String name, String partialMsg) {

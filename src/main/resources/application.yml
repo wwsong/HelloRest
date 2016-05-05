@@ -1,8 +1,8 @@
 server:
-  port: ${appPort:8000}
+  port: ${appPort:8080}
 
 # Spring MVC dispatcher servlet path. Needs to be different than Jersey's to enable/disable Actuator endpoints access (/info, /health, ...)
-server.servlet-path: /
+server.servlet-path: /system
 # Jersey dispatcher servlet
 spring.jersey.application-path: /api
 
